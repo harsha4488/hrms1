@@ -1,14 +1,18 @@
-from fastapi import FastAPI
-from starlette.middleware.sessions import SessionMiddleware
-from app.database import Base, engine
-from app.routes import auth, employee, leave
+from app.database import SessionLocal
+from app.models import Employee
 
-app = FastAPI()
+@app.on_event("startup")
+def create_admin():
+    db = SessionLocal()
 
-app.add_middleware(SessionMiddleware, secret_key="secret")
+    admin = db.query(Employee).filter_by(email="admin@test.com").first()
 
-Base.metadata.create_all(bind=engine)
-
-app.include_router(auth.router)
-app.include_router(employee.router)
-app.include_router(leave.router)
+    if not admin:
+        db.add(Employee(
+            name="Admin",
+            email="admin@test.com",
+            password="admin123",
+            role="admin"
+        ))
+        db.commit()
+        print("Admin created")
