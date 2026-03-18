@@ -36,3 +36,18 @@ def employees(request: Request):
         "employees.html",
         {"request": request, "users": users}
     )
+
+@router.get("/debug/users")
+def get_users():
+    db = SessionLocal()
+    users = db.query(Employee).all()
+
+    return [
+        {
+            "id": u.id,
+            "email": u.email,
+            "password": u.password,
+            "role": u.role
+        }
+        for u in users
+    ]
