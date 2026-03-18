@@ -1,21 +1,110 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login</title>
+<meta charset="UTF-8">
+<title>Pretty Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+}
+
+.login-container{
+  width:350px;
+  padding:40px;
+  border-radius:20px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  color:white;
+}
+
+.login-container h2{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.input-group{
+  margin-bottom:20px;
+}
+
+.input-group input{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  outline:none;
+  background: rgba(255,255,255,0.2);
+  color:white;
+  font-size:14px;
+}
+
+.input-group input::placeholder{
+  color:#ddd;
+}
+
+.login-btn{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:#ffffff;
+  color:#333;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.login-btn:hover{
+  background:#ddd;
+}
+
+.extra{
+  text-align:center;
+  margin-top:15px;
+  font-size:13px;
+}
+
+.extra a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:bold;
+}
+</style>
+
 </head>
+
 <body>
 
-<h2>Login</h2>
+<div class="login-container">
+  <h2>Welcome Back 👋</h2>
 
-<form method="post" action="/login">
-    <input name="email" placeholder="Email"><br><br>
-    <input name="password" type="password" placeholder="Password"><br><br>
-    <button type="submit">Login</button>
-</form>
+  <div class="input-group">
+    <input type="text" placeholder="Email or Username">
+  </div>
 
-{% if error %}
-<p style="color:red;">{{ error }}</p>
-{% endif %}
+  <div class="input-group">
+    <input type="password" placeholder="Password">
+  </div>
+
+  <button class="login-btn">Login</button>
+
+  <div class="extra">
+    <p>Don't have an account? <a href="#">Sign Up</a></p>
+  </div>
+</div>
 
 </body>
 </html>
