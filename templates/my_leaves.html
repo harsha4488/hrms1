@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3>My Leaves</h3>
+
+<table class="table">
+<tr>
+    <th>From</th>
+    <th>To</th>
+    <th>Status</th>
+</tr>
+
+{% for l in leaves %}
+<tr>
+    <td>{{ l.from_date }}</td>
+    <td>{{ l.to_date }}</td>
+    <td>{{ l.status }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+{% endblock %}

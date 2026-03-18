@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Login</title>
+</head>
+<body>
+
+<h2>Employee Login</h2>
+
+<form method="post" action="/login">
+    <input name="email" placeholder="Email"><br><br>
+    <input name="password" type="password" placeholder="Password"><br><br>
+    <button>Login</button>
+</form>
+
+<p>
+Admin? <a href="/admin">Login here</a>
+</p>
+<p>New user? <a href="/register">Register</a></p>
+
+{% if error %}
+<p style="color:red;">{{ error }}</p>
+{% endif %}
+
+</body>
+</html>

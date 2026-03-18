@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3>All Leave Requests</h3>
+
+<table class="table">
+<tr>
+    <th>Employee</th>
+    <th>From</th>
+    <th>To</th>
+    <th>Status</th>
+    <th>Action</th>
+</tr>
+
+{% for l in leaves %}
+<tr>
+    <td>{{ l.employee_id }}</td>
+    <td>{{ l.from_date }}</td>
+    <td>{{ l.to_date }}</td>
+    <td>{{ l.status }}</td>
+    <td>
+        <a href="/approve/{{ l.id }}" class="btn btn-success btn-sm">Approve</a>
+        <a href="/reject/{{ l.id }}" class="btn btn-danger btn-sm">Reject</a>
+    </td>
+    
+</tr>
+{% endfor %}
+
+</table>
+
+{% endblock %}

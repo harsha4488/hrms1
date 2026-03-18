@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card">
+    <h2>All Leave Requests</h2>
+
+    <table border="1" width="100%">
+        <tr>
+            <th>Employee ID</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+
+        {% for leave in leaves %}
+        <tr>
+            <td>{{ leave.employee_id }}</td>
+            <td>{{ leave.date }}</td>
+            <td>{{ leave.status }}</td>
+            <td>
+                <a href="/approve/{{ leave.id }}">Approve</a>
+                <a href="/reject/{{ leave.id }}">Reject</a>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+</div>
+
+{% endblock %}
