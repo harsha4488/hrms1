@@ -6,23 +6,23 @@ from app.routes import auth, employee, leave
 
 app = FastAPI()
 
-# ✅ Session middleware
+# ✅ Sessions
 app.add_middleware(SessionMiddleware, secret_key="super-secret-key")
 
 # ✅ Create tables
 Base.metadata.create_all(bind=engine)
 
 
-# 🔥 REFRESH USERS (SAFE RESET)
+# 🔥 REFRESH USERS (ADMIN + EMPLOYEE)
 @app.on_event("startup")
 def refresh_users():
     db = SessionLocal()
 
     try:
-        # ❌ DELETE ONLY USERS (NOT TABLES)
+        # ❌ DELETE ALL USERS
         db.query(Employee).delete()
 
-        # ✅ RECREATE ADMIN
+        # ✅ CREATE ADMIN
         db.add(Employee(
             name="Admin",
             email="admin@test.com",
@@ -30,7 +30,7 @@ def refresh_users():
             role="admin"
         ))
 
-        # ✅ RECREATE EMPLOYEE
+        # ✅ CREATE EMPLOYEE
         db.add(Employee(
             name="User",
             email="user@test.com",
@@ -39,16 +39,16 @@ def refresh_users():
         ))
 
         db.commit()
-        print("Users refreshed")
+        print("Users refreshed successfully")
 
     except Exception as e:
-        print("Startup error:", e)
+        print("Error refreshing users:", e)
 
     finally:
         db.close()
 
 
-# ✅ Include routes
+# ✅ Routes
 app.include_router(auth.router)
 app.include_router(employee.router)
 app.include_router(leave.router)
