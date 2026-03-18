@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Pretty Login</title>
+<title>Login</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family: 'Segoe UI', sans-serif;
+  font-family:'Poppins', sans-serif;
 }
 
 body{
@@ -18,90 +21,138 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  background: linear-gradient(135deg, #141e30, #243b55);
 }
 
-.login-container{
-  width:350px;
+/* Floating blobs */
+body::before, body::after{
+  content:"";
+  position:absolute;
+  width:300px;
+  height:300px;
+  border-radius:50%;
+  filter: blur(100px);
+}
+body::before{
+  background:#ff00cc;
+  top:10%;
+  left:10%;
+}
+body::after{
+  background:#00dbde;
+  bottom:10%;
+  right:10%;
+}
+
+.container{
+  position:relative;
+  width:360px;
   padding:40px;
   border-radius:20px;
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(15px);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
   color:white;
+  animation: fadeIn 1s ease;
 }
 
-.login-container h2{
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+h2{
   text-align:center;
   margin-bottom:25px;
+  font-weight:600;
 }
 
-.input-group{
+.input-box{
+  position:relative;
   margin-bottom:20px;
 }
 
-.input-group input{
+.input-box input{
   width:100%;
-  padding:12px;
+  padding:12px 40px 12px 12px;
   border:none;
   border-radius:10px;
   outline:none;
-  background: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.15);
   color:white;
   font-size:14px;
 }
 
-.input-group input::placeholder{
+.input-box input::placeholder{
   color:#ddd;
 }
 
-.login-btn{
+/* Icons */
+.input-box i{
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:16px;
+  opacity:0.7;
+}
+
+/* Button */
+.btn{
   width:100%;
   padding:12px;
   border:none;
   border-radius:10px;
-  background:#ffffff;
-  color:#333;
-  font-weight:bold;
+  background: linear-gradient(135deg, #ff00cc, #3333ff);
+  color:white;
+  font-weight:600;
   cursor:pointer;
   transition:0.3s;
 }
 
-.login-btn:hover{
-  background:#ddd;
+.btn:hover{
+  transform:scale(1.05);
+  box-shadow:0 5px 20px rgba(255,0,204,0.5);
 }
 
-.extra{
+/* Footer */
+.footer{
   text-align:center;
   margin-top:15px;
   font-size:13px;
 }
 
-.extra a{
-  color:#fff;
+.footer a{
+  color:#00dbde;
   text-decoration:none;
-  font-weight:bold;
+  font-weight:500;
 }
 </style>
+
+<!-- Icons CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </head>
 
 <body>
 
-<div class="login-container">
-  <h2>Welcome Back 👋</h2>
+<div class="container">
+  <h2>Login ✨</h2>
 
-  <div class="input-group">
-    <input type="text" placeholder="Email or Username">
+  <div class="input-box">
+    <input type="text" placeholder="Email">
+    <i class="fa fa-envelope"></i>
   </div>
 
-  <div class="input-group">
+  <div class="input-box">
     <input type="password" placeholder="Password">
+    <i class="fa fa-lock"></i>
   </div>
 
-  <button class="login-btn">Login</button>
+  <button class="btn">Login</button>
 
-  <div class="extra">
+  <div class="footer">
+    <p>Forgot password? <a href="#">Reset</a></p>
     <p>Don't have an account? <a href="#">Sign Up</a></p>
   </div>
 </div>
