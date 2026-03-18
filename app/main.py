@@ -52,3 +52,16 @@ def refresh_users():
 app.include_router(auth.router)
 app.include_router(employee.router)
 app.include_router(leave.router)
+
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+app = FastAPI()
+
+class Employee(BaseModel):
+    name: str
+    email: str
+
+@app.post("/register")   # 👈 ADD THIS
+def register(emp: Employee):
+    return {"message": "Employee registered", "data": emp}
