@@ -8,14 +8,15 @@
 <h2>Admin Login</h2>
 
 <form method="post" action="/admin-login">
-    <input type="email" name="email" placeholder="Email" required><br><br>
-    <input type="password" name="password" placeholder="Password" required><br><br>
-    <button type="submit">Login</button>
+    <input name="email" placeholder="Email"><br><br>
+    <input name="password" type="password" placeholder="Password"><br><br>
+    <button>Login</button>
 </form>
 
 <p>
 Employee? <a href="/">Login here</a>
 </p>
+<p>No admin? <a href="/admin-register">Create Admin</a></p>
 
 {% if error %}
 <p style="color:red;">{{ error }}</p>
